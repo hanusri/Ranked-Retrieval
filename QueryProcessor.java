@@ -22,6 +22,8 @@ public class QueryProcessor implements IProcessor {
                 // create a query node for ech query
                 Lemmatizer lemmatizer = new Lemmatizer();
                 for (String queryTerm : tokens) {
+                    if(ApplicationRunner.getStopWords().contains(queryTerm))
+                        continue;
                     List<String> lemmatizedWords = lemmatizer.lemmatize(queryTerm);
                     if (lemmatizedWords == null || lemmatizedWords.size() == 0)
                         continue;

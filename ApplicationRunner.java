@@ -91,6 +91,14 @@ public class ApplicationRunner {
                     globalQueryMap.put(entry.getKey(), count + entry.getValue());
                 }
             }
+
+            // traverse through each query and process
+            for (QueryNode queryNode : queryList) {
+                RankedRetrievalProcessor rankedRetrievalProcessor = new RankedRetrievalProcessor();
+                rankedRetrievalProcessor.processCosineScore(queryNode);
+                ArrayList<QueryDocumentNode> queryDocumentNodes = rankedRetrievalProcessor.topKDocuments();
+                rankedRetrievalProcessor.printVectorRepresentation(queryDocumentNodes);
+            }
         }
     }
 

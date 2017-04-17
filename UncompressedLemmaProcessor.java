@@ -25,6 +25,7 @@ public class UncompressedLemmaProcessor implements IProcessor {
                 documentNode.setDocumentName(file.getName());
                 String content = new Scanner(file).useDelimiter("\\Z").next();
                 String headLine = content.substring(content.indexOf("<TITLE>") + 7, content.indexOf("</TITLE>")).trim();
+                headLine = headLine.replace("\n", "");
                 documentNode.setDocumentTitle(headLine);
                 // set the document length
                 documentNode.setDocumentLength(tokenizedWords.size());
